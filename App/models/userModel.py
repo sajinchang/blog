@@ -19,7 +19,9 @@ class User(db.Model,Util):
     email = db.Column(db.String(64),nullable=False)
 
     # 是否激活,默认否
-    active = db.Column(db.Boolean,default=False)
+    active = db.Column(db.Boolean,default=False, comment='是否激活')
     # 逻辑删除,注销用户flag,0为删除
-    flag = db.Column(db.Boolean,default=True)
-    token = db.Column(db.String(64), unique=True)
+    flag = db.Column(db.Boolean,default=True, comment='是否逻辑删除')
+    token = db.Column(db.String(64), unique=True, comment='获取一个uuid,做邮箱激活验证')
+
+    # db.relationship('Blog', backref='user', lazy='dynamic', cascade='all,delete-orphan', passive_deletes=True)

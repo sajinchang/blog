@@ -16,5 +16,5 @@ from App.models.utilModel import Util
 class Like(db.Model,Util):
     id = db.Column(db.Integer,autoincrement=True,primary_key=True)
     # 两个外键
-    u_id = db.Column(db.Integer,db.ForeignKey(User.id))
-    blog_id = db.Column(db.Integer,db.ForeignKey(Blog.id))
+    u_id = db.Column(db.Integer,db.ForeignKey(User.id,ondelete='CASCADE'))
+    blog_id = db.Column(db.Integer,db.ForeignKey(Blog.id,ondelete='CASCADE'))
