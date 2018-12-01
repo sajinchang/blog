@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        
+        #com {
+            width: 100px;
+            height: 30px;
+            background: pink;
+            text-align: center;
+            line-height: 30px;
+            font-size: 16px;
+            display: block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <p>户名:<input type="text" placeholder="用户名/手机号" id="user"></p>
+        <p>密码:<input type="password" id="pass"></p>
+        邮箱:<input type="text" id="email"><br>
+        <span id="com">提交</span>
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    var user = document.getElementById('user');
+    var pass = document.querySelector('#pass');
+    var email = document.querySelector('#email');
+    var com = document.getElementById('com');
+    onload = function() {
+
+        com.onclick = () => {
+            let userName = user.value;
+            let password = pass.value;
+            let emailAdd = email.value;
+
+            $.ajax({
+                type: 'POST',
+                <!--{#dataType: 'json',#}-->
+                url: 'http://127.0.0.1:5000/account/',
+                data: {
+                    username: userName,
+                    password: password,
+                    email: emailAdd
+                },
+                success: (res) => {
+                    console.log(res);
+                    console.log(0);
+                },
+                error: function(res) {
+                    console.log(res);
+                    console.log(1)
+                }
+            })
+        }
+
+
+
+    }
+</script>
+
+</html>
